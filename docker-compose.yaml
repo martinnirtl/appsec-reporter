@@ -1,0 +1,5 @@
+version: "2"
+
+services:
+  reporter:
+    image: martinnirtl/appsec-reporter:local
