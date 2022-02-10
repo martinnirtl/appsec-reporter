@@ -1,6 +1,8 @@
-# Welcome to Remix!
+# AppSec Reporter
 
-- [Remix Docs](https://remix.run/docs)
+### Generate security reports based on Dynatrace Application Security
+
+Dynatrace [Application Security](https://www.dynatrace.com/support/help/how-to-use-dynatrace/application-security) enables you to detect, visualize, analyze, monitor, and remediate open-source and third-party vulnerabilities in production and pre-production environments at runtime.
 
 ## Development
 
