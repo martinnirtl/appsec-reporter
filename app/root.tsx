@@ -1,29 +1,22 @@
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration
-} from "remix";
-import type { MetaFunction } from "remix";
-import type { LinksFunction } from "remix";
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from 'remix';
+import type { MetaFunction } from 'remix';
+import type { LinksFunction } from 'remix';
 
 export const links: LinksFunction = () => {
   return [
     {
-      rel: "stylesheet",
-      href: "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css"
+      rel: 'stylesheet',
+      href: 'https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css',
     },
     {
-      rel: "icon",
-      href: "https://dt-cdn.net/images/favicon-48x48-transparent-48-9b4df9c769.png"
-    }
+      rel: 'icon',
+      href: 'https://dt-cdn.net/images/favicon-48x48-transparent-48-9b4df9c769.png',
+    },
   ];
 };
 
 export const meta: MetaFunction = () => {
-  return { title: "AppSec Reporter" };
+  return { title: 'AppSec Reporter' };
 };
 
 export default function App() {
@@ -39,7 +32,7 @@ export default function App() {
         <Outlet />
         <ScrollRestoration />
         <Scripts />
-        {process.env.NODE_ENV === "development" && <LiveReload />}
+        {process.env.NODE_ENV === 'development' && <LiveReload />}
       </body>
     </html>
   );
