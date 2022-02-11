@@ -1,0 +1,52 @@
+{
+  "version": "e16b7502",
+  "entry": {
+    "module": "/build/entry.client-YG3EIVZA.js",
+    "imports": [
+      "/build/_shared/chunk-6NDA4BXL.js",
+      "/build/_shared/chunk-E7VMOUYL.js"
+    ]
+  },
+  "routes": {
+    "root": {
+      "id": "root",
+      "path": "",
+      "module": "/build/root-UNTRDQDR.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/explore": {
+      "id": "routes/explore",
+      "parentId": "root",
+      "path": "explore",
+      "module": "/build/routes/explore-RNPZMUNB.js",
+      "hasAction": false,
+      "hasLoader": true,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/generate": {
+      "id": "routes/generate",
+      "parentId": "root",
+      "path": "generate",
+      "module": "/build/routes/generate-N6UUVMP2.js",
+      "hasAction": false,
+      "hasLoader": true,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    },
+    "routes/index": {
+      "id": "routes/index",
+      "parentId": "root",
+      "index": true,
+      "module": "/build/routes/index-RECTQD6H.js",
+      "hasAction": false,
+      "hasLoader": false,
+      "hasCatchBoundary": false,
+      "hasErrorBoundary": false
+    }
+  },
+  "url": "/build/manifest-E16B7502.js"
+}
