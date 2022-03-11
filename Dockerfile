@@ -16,3 +16,5 @@ WORKDIR /app
 COPY --from=build-env /app ./
 
 CMD ["server/index.js"]
+
+EXPOSE 3000
