@@ -3,3 +3,6 @@ version: "2"
 services:
   reporter:
     image: martinnirtl/appsec-reporter:local
+    build: .
+    ports:
+      - 3000:3000

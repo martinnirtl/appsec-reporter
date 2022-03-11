@@ -15,4 +15,4 @@ ENV NODE_ENV production
 WORKDIR /app
 COPY --from=build-env /app ./
 
-CMD ["build/index.js"]
+CMD ["server/index.js"]

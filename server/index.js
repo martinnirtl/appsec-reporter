@@ -22,10 +22,10 @@ app.all(
   MODE === "production"
     ? createRequestHandler({ build: require("./build") })
     : (req, res, next) => {
-        purgeRequireCache();
-        const build = require("./build");
-        return createRequestHandler({ build, mode: MODE })(req, res, next);
-      }
+      purgeRequireCache();
+      const build = require("./build");
+      return createRequestHandler({ build, mode: MODE })(req, res, next);
+    }
 );
 
 const port = process.env.PORT || 3000;

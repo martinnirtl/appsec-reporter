@@ -3,3 +3,6 @@
 
 .cache
 .gitignore
+.vscode
+public/build
+server/build

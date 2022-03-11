@@ -2,7 +2,7 @@ import { MetaFunction, useLoaderData } from 'remix';
 import type { LoaderFunction } from 'remix';
 
 import Navbar from '~/components/navbar';
-import { getComputedSecurityProblems } from '~/helpers/dynatrace';
+import { getSecurityProblems } from '~/helpers/dynatrace';
 import Table from '~/components/table/table';
 
 export const meta: MetaFunction = () => {
@@ -10,7 +10,7 @@ export const meta: MetaFunction = () => {
 };
 
 export let loader: LoaderFunction = async () => {
-  return getComputedSecurityProblems();
+  return getSecurityProblems();
 };
 
 export default function Index() {
