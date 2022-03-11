@@ -4,5 +4,8 @@ services:
   reporter:
     image: martinnirtl/appsec-reporter:local
     build: .
+    environment:
+      - DT_TENANT
+      - DT_TOKEN
     ports:
       - 3000:3000
