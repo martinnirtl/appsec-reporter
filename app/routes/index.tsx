@@ -80,29 +80,35 @@ export default function Index() {
         </div>
         <div className="mt-4">
           <div className="field">
-            <input className="input is-small" type="text" placeholder="Dynatrace Tenant" onChange={updateTenant} value={tenant} disabled={configuredFromBackend} />
+            {/* <label className="label">Dynatrace Tenant</label> */}
+            <div className="control">
+              <input className="input is-small" type="text" placeholder="Dynatrace Tenant" onChange={updateTenant} value={tenant} disabled={configuredFromBackend} />
+            </div>
           </div>
           <div className="field">
-            <input className="input is-small" type="password" placeholder="Dynatrace Token" onChange={updateToken} value={token} disabled={configuredFromBackend} />
-            {configuredFromBackend && <p className="help is-success">Dynatrace tenant and token are configured on the backend.</p>}
+            {/* <label className="label">Dynatrace Token</label> */}
+            <div className="control">
+              <input className="input is-small" type="password" placeholder="Dynatrace Token" onChange={updateToken} value={token} disabled={configuredFromBackend} />
+            </div>
           </div>
+          {configuredFromBackend && <p className="help is-success">Dynatrace tenant and token are configured on the backend.</p>}
           <div className="field">
-            {/* <a className="button is-danger is-fullwidth" href="/_generate" download="report.csv">
-              Generate CSV Report
-            </a> */}
-            {file ?
-              <a className={classNames('button', 'is-success', 'is-fullwidth')} href={file} download={`appsec-report_${new Date().toISOString().slice(0, 10)}.csv`}>
-                Download CSV Report
+            <div className="control">
+              <a className={classNames('button', 'is-info', 'is-fullwidth', { 'is-loading': isLoading })} onClick={generateReport}>
+                {file ? 'Regenerate' : 'Generate CSV Report'}
               </a>
-              :
-              <>
-                <a className={classNames('button', 'is-info', 'is-fullwidth', { 'is-loading': isLoading })} onClick={generateReport}>
-                  Generate CSV Report
-                </a>
-                {message && <p className="help is-danger">{message}</p>}
-              </>
-            }
+            </div>
+            {message && <p className="help is-danger">{message}</p>}
           </div>
+          {file &&
+            <div className="field">
+              <div className="control">
+                <a className={classNames('button', 'is-success', 'is-fullwidth')} href={file} download={`appsec-report_${new Date().toISOString().slice(0, 10)}.csv`}>
+                  Download CSV Report
+                </a>
+              </div>
+            </div>
+          }
           <p className="help">
             Need help? Reach out to <a href="mailto:martin.nirtl@dynatrace.com">martin.nirtl@dynatrace.com</a>
           </p>
