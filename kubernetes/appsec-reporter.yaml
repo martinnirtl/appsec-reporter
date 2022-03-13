@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: appsec-reporter
-          image: martinnirtl/appsec-reporter:0.1.0
+          image: martinnirtl/appsec-reporter:0.1.1
           resources: {}
           envFrom:
             - configMapRef:
