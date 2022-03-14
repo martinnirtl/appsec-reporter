@@ -90,8 +90,8 @@ export default function Index() {
             <div className="control">
               <input className="input is-small" type="password" placeholder="Dynatrace Token" onChange={updateToken} value={token} disabled={configuredFromBackend} />
             </div>
+            {configuredFromBackend && <p className="help is-success">Dynatrace tenant and token are configured on the backend.</p>}
           </div>
-          {configuredFromBackend && <p className="help is-success">Dynatrace tenant and token are configured on the backend.</p>}
           <div className="field">
             <div className="control">
               <a className={classNames('button', 'is-info', 'is-fullwidth', { 'is-loading': isLoading })} onClick={generateReport}>
