@@ -1,8 +1,10 @@
-**/node_modules
-**/.env
-
-.cache
-.gitignore
 .vscode
-public/build
-server/build
+docs
+kubernetes
+node_modules
+
+.env
+.gitignore
+.prettierrc.js
+docker-compose.yaml
+README.md

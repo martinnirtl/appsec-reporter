@@ -5,7 +5,7 @@ services:
     image: martinnirtl/appsec-reporter:local
     build: .
     environment:
-      - DT_TENANT
-      - DT_TOKEN
+      - REACT_APP_DT_TENANT
+      - REACT_APP_DT_TOKEN
     ports:
       - 3000:3000
