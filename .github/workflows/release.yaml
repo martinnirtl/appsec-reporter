@@ -12,6 +12,13 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Add monitoring script
+        env:
+          DT_TOKEN: ${{ secrets.DT_TOKEN }}
+        run: |
+          DT_SCRIPT_TAG=$(curl https://ztn45169.sprint.dynatracelabs.com/api/v1/rum/jsTagComplete/APPLICATION-F545EC8C8A491625?Api-Token=$DT_TOKEN)
+          sed -i "s@<!-- dynatrace-script-tag -->@$DT_SCRIPT_TAG@" public/index.html
+
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -22,15 +29,6 @@ jobs:
 
       - name: Build app
         run: npm run build
-
-      - name: Add monitoring script
-        env:
-          DT_TOKEN: ${{ secrets.DT_TOKEN }}
-        run: |
-          DT_SCRIPT_TAG=$(curl https://ztn45169.sprint.dynatracelabs.com/api/v1/rum/jsTagComplete/APPLICATION-F545EC8C8A491625?Api-Token=$DT_TOKEN)
-          sed -i "s@<!-- dynatrace-script-tag -->@$DT_SCRIPT_TAG@" build/index.html
-
-          cat build/index.html
 
       - name: Deploy to Github Pages
         uses: JamesIves/github-pages-deploy-action@v4.2.5
