@@ -24,8 +24,10 @@ jobs:
         run: npm run build
 
       - name: Add monitoring script
+        env:
+          DT_TOKEN: ${{ secrets.DT_TOKEN }}
         run: |
-          DT_SCRIPT_TAG=$(curl https://ztn45169.sprint.dynatracelabs.com/api/v1/rum/jsTagComplete/APPLICATION-F545EC8C8A491625?Api-Token={{ secrets.DT_TOKEN }})
+          DT_SCRIPT_TAG=$(curl https://ztn45169.sprint.dynatracelabs.com/api/v1/rum/jsTagComplete/APPLICATION-F545EC8C8A491625?Api-Token=$DT_TOKEN)
           sed -i "s@<!-- dynatrace-script-tag -->@$DT_SCRIPT_TAG@" build/index.html
 
           cat built/index.html
