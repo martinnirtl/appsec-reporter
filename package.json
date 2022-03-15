@@ -1,6 +1,6 @@
 {
   "name": "appsec-reporter",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "homepage": "https://martinnirtl.github.io/appsec-reporter/",
   "dependencies": {
@@ -37,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "json": "^11.0.0"
   }
 }
