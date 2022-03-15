@@ -2,10 +2,10 @@ version: "2"
 
 services:
   reporter:
-    image: martinnirtl/appsec-reporter:local
+    image: martinnirtl/appsec-reporter:0.2.0
     build: .
     environment:
       - REACT_APP_DT_TENANT
       - REACT_APP_DT_TOKEN
     ports:
-      - 3000:3000
+      - 3000:80
