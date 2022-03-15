@@ -8,7 +8,7 @@ RUN npm ci
 COPY ./ .
 
 # Set homepage in package.json to . to serve app from /
-RUN npx json -I -f package.json -e "this.homepage=\".\""
+RUN npx json -I -f package.json -e "this.homepage='.'"
 RUN npm run build
 
 FROM nginx as production-stage
