@@ -2,7 +2,7 @@
   "name": "appsec-reporter",
   "version": "0.2.0",
   "private": false,
-  "homepage": "https://appsec-reporter.martinnirtl.com",
+  "homepage": "https://martinnirtl.github.io/appsec-reporter/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
