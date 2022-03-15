@@ -2,7 +2,7 @@ version: "2"
 
 services:
   reporter:
-    image: martinnirtl/appsec-reporter:0.2.0
+    image: martinnirtl/appsec-reporter:0.2.1
     build: .
     environment:
       - REACT_APP_DT_TENANT
