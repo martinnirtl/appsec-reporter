@@ -1,6 +1,6 @@
 <p align="center">
   <br/>
-  <a href="https://martinnirtl.github.io/appsec-reporter/"><img src="https://raw.githubusercontent.com/martinnirtl/appsec-reporter/master/docs/img/ui.png" width="800px"></a>
+  <a href="https://martinnirtl.github.io/appsec-reporter/"><img src="https://raw.githubusercontent.com/martinnirtl/appsec-reporter/master/docs/img/ui.png" width="400px"></a>
 </p>
 
 # AppSec Reporter
