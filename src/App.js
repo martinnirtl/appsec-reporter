@@ -31,13 +31,18 @@ export default function Index() {
     }
 
     setLoadingState(true);
-    const report = await generateReport(tenant, token);
-    const fileBlob = new Blob([report])
+    try {
+      const report = await generateReport(tenant, token);
+      const fileBlob = new Blob([report])
 
-    const fileUrl = URL.createObjectURL(fileBlob)
+      const fileUrl = URL.createObjectURL(fileBlob)
 
-    setFile(fileUrl);
-    setLoadingState(false);
+      setFile(fileUrl);
+    } catch (error) {
+      setMessage('Generation failed! Please check the Dynatrace tenant URL and token.')
+    } finally {
+      setLoadingState(false);
+    }
   }
 
   return (
