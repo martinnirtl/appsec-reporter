@@ -128,7 +128,10 @@ export const generateReport = async (tenant, token) => {
     { label: 'Entity Name (detected)', value: 'entityDetectedName' },
   ]
 
-  const problems = await getSecurityProblems(tenant, token);
+  const problems = await getSecurityProblems(
+    tenant.endsWith('/') ? tenant.slice(0, -1) : tenant,
+    token
+  );
 
   const customParser = new Parser({
     fields,
