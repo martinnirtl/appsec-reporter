@@ -10,7 +10,7 @@ Dynatrace [Application Security](https://www.dynatrace.com/support/help/how-to-u
 
 ## Usage
 
-The Appsec reporter is hosted on Github Pages: https://martinnirtl.github.io/appsec-reporter/
+The AppSec Reporter is hosted on Github Pages: https://martinnirtl.github.io/appsec-reporter/
 
 Before you can start generating reports, you need to meet the following two prerequisites:
 - Dynatrace tenant/environment URL
