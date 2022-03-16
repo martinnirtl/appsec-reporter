@@ -58,18 +58,26 @@ export default function Index() {
           enables you to detect, visualize, analyze, monitor, and remediate open-source and third-party vulnerabilities
           in production and pre-production environments at runtime.
         </p>
+        <p className="is-size-6 has-text-weight-semibold mt-4">Expected URL format:</p>
+        <div className="tags are-small mt-1">
+          <p className="tag is-info is-light">{"SaaS: https://{your-tenant-id}.live.dynatrace.com"}</p>
+          <p className="tag is-info is-light">{"Managed: https://{your-domain}/e/{your-environment-id}"}</p>
+        </div>
         <p className="is-size-6 has-text-weight-semibold mt-4">
-          The generated CSV-file will use <span className="has-text-weight-bold">;</span> as delimiter and requires the following token scopes:
+          Required token scopes:
         </p>
         <div className="tags are-small mt-1">
           <p className="tag is-info is-light">Read security problems</p>
           <p className="tag is-info is-light">Read entities</p>
         </div>
+        <p className="is-size-6 has-text-weight-semibold mt-4">
+          The generated CSV-file will use <span className="has-text-weight-bold">;</span> as delimiter.
+        </p>
         <div className="mt-4">
           <div className="field">
             {/* <label className="label">Dynatrace Tenant</label> */}
             <div className="control">
-              <input className="input is-small" type="text" placeholder="Dynatrace Tenant" onChange={updateTenant} value={tenant} />
+              <input className="input is-small" type="text" placeholder="Dynatrace Tenant/Environment URL" onChange={updateTenant} value={tenant} />
             </div>
           </div>
           <div className="field">
@@ -96,7 +104,7 @@ export default function Index() {
             </div>
           }
           <p className="help">
-            Need help? Reach out to <a href="mailto:martin.nirtl@dynatrace.com">martin.nirtl@dynatrace.com</a>
+            Need help? Visit the project on <a href="https://github.com/martinnirtl/appsec-reporter">Github</a>
           </p>
         </div>
       </div>
