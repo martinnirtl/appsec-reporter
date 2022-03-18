@@ -1,0 +1,69 @@
+name: release
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      # - name: Run e2e tests
+      #   run: npm run test:e2e
+
+  publish:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Add monitoring script
+        env:
+          DT_TOKEN: ${{ secrets.DT_TOKEN }}
+        run: |
+          DT_SCRIPT_TAG=$(curl https://ztn45169.sprint.dynatracelabs.com/api/v1/rum/jsTagComplete/APPLICATION-F545EC8C8A491625?Api-Token=$DT_TOKEN)
+          sed -i "s@<!-- dynatrace-script-tag -->@$DT_SCRIPT_TAG@" public/index.html
+
+      - name: Build app
+        run: npm run build
+
+      - name: Deploy to Github Pages
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: gh-pages
+          folder: build
+
+  build-image:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: martinnirtl/appsec-reporter:latest
