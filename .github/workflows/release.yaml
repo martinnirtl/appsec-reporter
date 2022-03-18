@@ -4,7 +4,7 @@ on:
     branches: [ master ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
@@ -26,10 +26,6 @@ jobs:
       # - name: Run e2e tests
       #   run: npm run test:e2e
 
-  publish:
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
       - name: Add monitoring script
         env:
           DT_TOKEN: ${{ secrets.DT_TOKEN }}
@@ -47,7 +43,7 @@ jobs:
           folder: build
 
   build-image:
-    needs: test
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Set up QEMU
