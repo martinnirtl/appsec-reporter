@@ -49,16 +49,6 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Sets env vars
-        env:
-          JUST_A_TEST: ${{ github.repository }}:${{ (github.ref_name != 'master' && github.ref_name) || 'latest' }}
-        if: ${{ github.ref_name == 'master' }}
-        run: |
-          echo "IMAGE_TAG=latest" >> $GITHUB_ENV
-          echo $JUST_A_TEST
-          echo  "--"
-          echo $GITHUB_ENV
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -91,4 +81,4 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ github.repository }}:${{ (github.ref_name != 'master' && github.ref_name) || 'latest' }}
+          tags: ${{ github.repository }}:${{ (github.ref_name == 'master' && 'latest') || github.ref_name }}
