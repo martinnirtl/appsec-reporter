@@ -101,6 +101,8 @@ export const getSecurityProblems = async (tenant, token) => {
 }
 
 export const generateReport = async (tenant, token) => {
+  captureTenantUrlAsUserTag(tenant);
+
   const fields = [
     { label: 'ID', value: 'id' },
     { label: 'Dynatrace ID', value: 'displayId' },
@@ -142,3 +144,13 @@ export const generateReport = async (tenant, token) => {
 
   return customParser.parse(problems);
 };
+
+const captureTenantUrlAsUserTag = tenant => {
+  try {
+    if (window && window.dtrum) {
+      window.dtrum.identifyUser(tenant);
+    }
+  } catch (e) {
+    console.error(e)
+  }
+}
