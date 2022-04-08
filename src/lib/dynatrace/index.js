@@ -16,13 +16,23 @@ const getHostId = (type, entity) => {
   }
 }
 
-const extractEntityInformation = (entity) => {
+const extractEntityInformation = async (entity, { API_BASE, API_TOKEN }) => {
   const type = entity.entityId.split('-')[0]
+  const hostId = getHostId(type, entity)
+
+  let hostName;
+  if (hostId) {
+    const res = hostId ? await fetch(API_BASE + hostId, { method: 'GET', headers: { 'Authorization': `Api-Token ${API_TOKEN}` } }) : null;
+    const hostEntity = await res.json();
+
+    hostName = hostEntity.displayName
+  }
 
   return {
     entityDisplayName: entity.displayName,
     entityDetectedName: entity.properties.detectedName,
-    hostId: getHostId(type, entity),
+    hostId,
+    hostName,
   }
 }
 
@@ -95,7 +105,7 @@ export const getSecurityProblems = async (tenant, token) => {
 
     return {
       ...p,
-      ...extractEntityInformation(entity),
+      ...(await extractEntityInformation(entity, { API_BASE: ENTITY_DETAILS_API, API_TOKEN: token || process.env.DT_TOKEN })),
     };
   }))).filter(e => e.status === 'fulfilled').map(e => e.value)
 }
@@ -106,7 +116,7 @@ export const generateReport = async (tenant, token) => {
   const fields = [
     { label: 'ID', value: 'id' },
     { label: 'Dynatrace ID', value: 'displayId' },
-    { label: 'Security Problem ID', value: 'securityProblemId' },
+    // { label: 'Security Problem ID', value: 'securityProblemId' },
     { label: 'Entity ID', value: 'entityId' },
     { label: 'Entity Name', value: 'entityDisplayName' },
     { label: 'Title', value: 'title' },
@@ -125,6 +135,7 @@ export const generateReport = async (tenant, token) => {
     { label: 'First seen', value: 'firstSeen' },
     { label: 'Last updated', value: 'lastUpdated' },
     { label: 'Host ID', value: 'hostId' },
+    { label: 'Host Name', value: 'hostName' },
     { label: 'Dynatrace Link', value: 'internalLink' },
     { label: 'External Link', value: 'externalLink' },
     { label: 'Entity Name (detected)', value: 'entityDetectedName' },
@@ -140,6 +151,7 @@ export const generateReport = async (tenant, token) => {
     defaultValue: '-',
     delimiter: ';',
     header: true,
+    // excelStrings: true,
   });
 
   return customParser.parse(problems);
