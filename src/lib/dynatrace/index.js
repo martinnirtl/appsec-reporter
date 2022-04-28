@@ -22,6 +22,7 @@ const extractEntityInformation = async (entity, { API_BASE, API_TOKEN }) => {
 
   let hostName;
   if (hostId) {
+    // TODO prevent overfetching 
     const res = hostId ? await fetch(API_BASE + hostId, { method: 'GET', headers: { 'Authorization': `Api-Token ${API_TOKEN}` } }) : null;
     const hostEntity = await res.json();
 
@@ -73,6 +74,7 @@ export const getSecurityProblems = async (tenant, token) => {
         title: p.title,
         description: p.description,
         type: p.vulnerabilityType,
+        cves: p.cveIds ? p.cveIds.join(', ') : '-',
         technology: p.technology,
         package: p.packageName,
         component: component.displayName,
@@ -121,6 +123,7 @@ export const generateReport = async (tenant, token) => {
     { label: 'Entity Name', value: 'entityDisplayName' },
     { label: 'Title', value: 'title' },
     // { label: 'Description', value: 'description' },
+    { label: 'CVEs', value: 'cves' },
     { label: 'Type', value: 'type' },
     { label: 'Technology', value: 'technology' },
     { label: 'Package', value: 'package' },
