@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/appsec-reporter/static/css/main.41e08a48.css",
-    "main.js": "/appsec-reporter/static/js/main.7be27e08.js",
+    "main.js": "/appsec-reporter/static/js/main.49a832d7.js",
     "static/js/787.124f59be.chunk.js": "/appsec-reporter/static/js/787.124f59be.chunk.js",
     "index.html": "/appsec-reporter/index.html",
     "main.41e08a48.css.map": "/appsec-reporter/static/css/main.41e08a48.css.map",
-    "main.7be27e08.js.map": "/appsec-reporter/static/js/main.7be27e08.js.map",
+    "main.49a832d7.js.map": "/appsec-reporter/static/js/main.49a832d7.js.map",
     "787.124f59be.chunk.js.map": "/appsec-reporter/static/js/787.124f59be.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41e08a48.css",
-    "static/js/main.7be27e08.js"
+    "static/js/main.49a832d7.js"
   ]
 }
