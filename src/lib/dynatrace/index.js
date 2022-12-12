@@ -38,7 +38,7 @@ const extractEntityInformation = async (entity, { API_BASE, API_TOKEN }) => {
 }
 
 export const getSecurityProblems = async (tenant, token) => {
-  const SECURITY_PROBLEMS_API = `${tenant || process.env.DT_TENANT}/api/v2/securityProblems?pageSize=500`;
+  const SECURITY_PROBLEMS_API = `${tenant || process.env.DT_TENANT}/api/v2/securityProblems`;
   const SECURITY_PROBLEMS_DETAILS_API = `${tenant || process.env.DT_TENANT}/api/v2/securityProblems/`;
   const FIELDS = '%2BriskAssessment%2C%2BmanagementZones%2C%2Bdescription%2C%2Bevents%2C%2BvulnerableComponents%2C%2BaffectedEntities%2C%2BexposedEntities%2C%2BreachableDataAssets%2C%2BrelatedEntities%2C%2BrelatedContainerImages'
   const ENTITY_DETAILS_API = `${tenant || process.env.DT_TENANT}/api/v2/entities/`;
@@ -46,7 +46,7 @@ export const getSecurityProblems = async (tenant, token) => {
   const securityProblemsList = [];
   let nextPageKey = '';
   do {
-    const res = await fetch(nextPageKey ? `${SECURITY_PROBLEMS_API}&nextPageKey=${nextPageKey}` : SECURITY_PROBLEMS_API, { method: 'GET', headers: { 'Authorization': `Api-Token ${token || process.env.DT_TOKEN}` } });
+    const res = await fetch(nextPageKey ? `${SECURITY_PROBLEMS_API}?nextPageKey=${nextPageKey}` : `${SECURITY_PROBLEMS_API}?pageSize=500`, { method: 'GET', headers: { 'Authorization': `Api-Token ${token || process.env.DT_TOKEN}` } });
     const body = await res.json();
 
     securityProblemsList.push(...body.securityProblems);
